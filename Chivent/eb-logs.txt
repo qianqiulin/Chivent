@@ -1,0 +1,4 @@
+Retrieving logs...
+Logs were saved to /Users/qianqiulin/Desktop/Chivent/.elasticbeanstalk/logs/250423_000256
+Logs were saved to /Users/qianqiulin/Desktop/Chivent/.elasticbeanstalk/logs/250423_000256
+Updated symlink at /Users/qianqiulin/Desktop/Chivent/.elasticbeanstalk/logs/latest

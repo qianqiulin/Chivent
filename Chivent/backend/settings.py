@@ -38,7 +38,7 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = ['localhost','13.216.65.147']
+ALLOWED_HOSTS = ['localhost','13.216.65.147','127.0.0.1']
 
 
 # Application definition

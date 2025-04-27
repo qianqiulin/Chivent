@@ -2,12 +2,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // if you’ve set up CRA’s proxy to http://127.0.0.1:8000, you can just do:
-  baseURL: '/api/',
-  
-  // Otherwise:
-  // baseURL: 'http://13.216.65.147:8000/api/',
-  
+  baseURL: 'http://13.216.65.147/api/',
+  //baseURL:'http://localhost:8000/api/',
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },

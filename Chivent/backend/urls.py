@@ -26,4 +26,5 @@ urlpatterns = [
     path('', home, name='home'),
     path("admin/", admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/cart/', include('cart.urls')),
 ]

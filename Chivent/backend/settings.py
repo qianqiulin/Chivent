@@ -40,7 +40,11 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = ['localhost','13.216.65.147','127.0.0.1']
 
+CORS_ALLOW_CREDENTIALS = True
 
+# Make session cookie expire on browser-close
+SESSION_COOKIE_AGE = 1209600               # two weeks (default)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +57,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'events',
     'corsheaders',
+    'cart',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

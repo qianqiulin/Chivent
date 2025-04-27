@@ -9,6 +9,6 @@ from django.http import HttpResponse
 def home(request):
     return HttpResponse("Welcome to Chivent!")
 
-class EventViewSet(viewsets.ModelViewSet):
+class EventViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Event.objects.all().order_by('start_time')
     serializer_class = EventSerializer

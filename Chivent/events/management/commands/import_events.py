@@ -13,16 +13,16 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--num", type=int, default=50,
+            "--num", type=int, default=10,
             help="How many results to fetch per page (default: 50)"
         )
         parser.add_argument(
-            "--pages", type=int, default=1,
+            "--pages", type=int, default=5,
             help="How many pages to loop through (default: 1)"
         )
 
     def handle(self, *args, **options):
-        api_key = os.environ.get("SERPAPI_API_KEY")
+        api_key = "279445261754ab6404151bbef1cecf125614a75f3417d646a85a591f80f9a1f3"
         if not api_key:
             self.stderr.write(self.style.ERROR(
                 "❌ Please set SERPAPI_API_KEY in your environment."))

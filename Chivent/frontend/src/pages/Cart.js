@@ -1,58 +1,106 @@
 // src/pages/Cart.js
-import React, { useState, useContext } from 'react'
-import { CartContext } from '../pages/context/CartContext'
+import React, { useState, useContext } from 'react';
+import { CartContext } from '../pages/context/CartContext';
+import { Link } from 'react-router-dom';
+import './Cart.css';
 
 export default function Cart() {
   const { cart, remove, clear } = useContext(CartContext)
-
-  if (cart.length === 0) return <p>Your cart is empty.</p>
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  if (cart.length === 0) {
+    return <p className="empty-message">Your cart is empty.</p>;
+  }
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>Your Cart</h1>
-      <ul>
+    <div className="cart-container">
+      <h1 className="cart-header">Your Cart</h1>
+
+      <ul className="cart-list">
         {cart.map(item => (
           <CartItem
             key={item.id}
             item={item}
-            onRemove={(qtyToRemove) => remove(item.id, qtyToRemove)}
+            onRemove={(qty) => remove(item.id, qty)}
+            onDelete={() => remove(item.id, item.qty)}
           />
         ))}
       </ul>
-      <button onClick={clear} style={{ marginTop: '1rem' }}>
+      <div className="cart-total">
+        Total: ${total.toFixed(2)}
+      </div>
+      <button className="clear-btn" onClick={clear}>
         Clear Cart
       </button>
     </div>
   )
 }
 
-function CartItem({ item, onRemove }) {
-  const [rmQty, setRmQty] = useState(1)
+function CartItem({ item, onRemove, onDelete }) {
+  const [rmQty, setRmQty] = useState(1);
+  const handleChange = e => {
+    const val = e.target.value;
+    if (/^\d*$/.test(val)) {
+      setRmQty(val);
+    }
+  };
+
+  const handleRemove = () => {
+    const quantity = parseInt(rmQty, 10);
+
+    // validation
+    if (isNaN(quantity) || quantity < 1) {
+      alert("⚠️ Please enter a quantity of at least 1.");
+      return;
+    }
+    if (quantity > item.qty) {
+      alert(`⚠️ You only have ${item.qty} of "${item.title}" in your cart.`);
+      return;
+    }
+
+    onRemove(quantity);
+    setRmQty("1");
+    alert(`✅ Removed ${quantity} × "${item.title}" from your cart.`);
+  };
+
 
   return (
-    <li style={{ marginBottom: '1rem' }}>
-      <strong>{item.title}</strong> — ${item.price} × {item.qty}
+    <li className="cart-item">
+      <div className="cart-info">
+        <strong>{item.title}</strong>
+        <span>
+          ${item.price.toFixed(2)} × {item.qty} = ${ (item.price * item.qty).toFixed(2) }
+        </span>
+      </div>
 
-      <label style={{ marginLeft: '1rem' }}>
-        Remove quantity:{' '}
-        <input
-          type="number"
-          min="1"
-          max={item.qty}
-          value={rmQty}
-          onChange={e =>
-            setRmQty(Math.min(item.qty, Math.max(1, parseInt(e.target.value) || 1)))
-          }
-          style={{ width: '3rem' }}
-        />
-      </label>
+      <div className="cart-actions">
+      <Link to={`/events/${item.id}`} className="view-btn">
+          View Event
+        </Link>
+        <label className="action-label">
+          Remove:
+          <input
+            className="action-input"
+            type="text"          
+            value={rmQty}
+            onChange={handleChange}
+            style={{ width: '3rem' }}
+          />
+        </label>
 
-      <button
-        onClick={() => onRemove(rmQty)}
-        style={{ marginLeft: '0.5rem' }}
-      >
-        Remove {rmQty}
-      </button>
+        <button
+          className="remove-btn"
+          onClick={handleRemove}
+        >
+          Remove{rmQty}
+        </button>
+
+        <button
+          className="delete-btn"
+          onClick={onDelete}
+        >
+          Delete
+        </button>
+      </div>
     </li>
-  )
+  );
 }

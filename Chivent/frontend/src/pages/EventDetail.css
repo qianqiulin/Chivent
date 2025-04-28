@@ -1,0 +1,85 @@
+
+
+.event-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+.ed-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.ed-image-wrapper {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ed-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ed-description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  font-family: Georgia, serif;
+}
+
+.ed-meta {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.ed-meta i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #0070f3;
+}
+
+.ed-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.ed-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ed-qty-input {
+  width: 3rem;
+  padding: 0.25rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.add-button {
+  padding: 0.5rem 1.25rem;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.add-button:hover {
+  background: #005bb5;
+  transform: scale(1.03);
+}
+.add-button:active {
+  transform: scale(0.95);
+}

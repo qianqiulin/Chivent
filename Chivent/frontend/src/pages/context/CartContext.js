@@ -15,7 +15,8 @@ export function CartProvider({ children }) {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  function add(item, qty = 1) {
+  function add(rawItem, qty = 1) {
+    const item = { ...rawItem, price: Number(rawItem.price) };
     setCart(prev => {
       const idx = prev.findIndex(i => i.id === item.id)
       if (idx > -1) {
